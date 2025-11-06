@@ -1,104 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/output.css">
-    <title>Flash Cards</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="src/output.css" />
+  <title>Flash Cards</title>
+  <style>
+    body {
+      background-image: url(image.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+    }
+    #add-coll-btn {
+      box-shadow: 5px 5px rgba(36, 30, 27, 0.5);
+    }
+    
+  </style>
 </head>
-<style>
-        body {
-        background-image: url(image.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-      #add-coll-btn {
-        box-shadow: 5px 5px rgba(36, 30, 27, 0.5);
-    }
-</style>
-<body>
-   <header class="bg-[#FF4800] w-full h-[80px] flex flex-row justify-between">
+
+<body class="text-gray-900">
+  <!-- Header -->
+ <header class="bg-[#FF4800] w-full h-[80px] flex flex-row justify-between">
         <h1 class="font-bold text-3xl pl-5 pt-4 text-amber-50">Cards</h1>
         <nav class=" top-0 right-0 space-x-4.5 font-bold text-[#fdf8f8] text-2xl pr-5 pt-5">
-            <a href="index.html">Home</a>
-            <a href="slashcard.html">FlashCards</a>
-            <a href="quize.html">Quiz</a>
+            <a class="hover:underline " href="index.html">Home</a>
+            <a class="hover:underline " href="slashcard.html">FlashCards</a>
+            <a class="hover:underline " href="quize.html">Quiz</a>
         </nav>
-    </header>  
-<section id="collection" class="flex flex-col justify-center items-center min-h-[300px] gap-6 pl-5">
-  <div class="text-3xl italic">
-    <h1>Collections</h1>
-  </div>
+    </header>
 
-  <button id="new-col" class="relative bg-amber-200  flex h-[300px] w-[300px] items-center justify-center text-white right-150 rounded-lg shadow-lg shadow-amber-700 hover:bg-amber-300">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-8 h-8 fill-current">
-      <polygon points="30,12 20,12 20,2 12,2 12,12 2,12 2,20 12,20 12,30 20,30 20,20 30,20"/>
-    </svg>
-  </button>
+  <!-- Collections Section -->
+  <section id="collection" class="flex flex-col justify-center items-center min-h-[300px] gap-6 px-4 py-8">
+    <div class="text-3xl italic mb-4"><h1>Collections</h1></div>
+    <div class="w-full flex flex-wrap justify-center md:justify-start gap-4">
+      <button id="new-col"
+        class="bg-amber-200 flex h-[250px] w-[250px] sm:h-[300px] sm:w-[300px] items-center justify-center text-white rounded-lg shadow-lg shadow-amber-700 hover:bg-amber-300 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-8 h-8 fill-current">
+          <polygon points="30,12 20,12 20,2 12,2 12,12 2,12 2,20 12,20 12,30 20,30 20,20 30,20"/>
+        </svg>
+      </button>
+      <!-- هنا غادي يجيوا بقية الكولكشنات من LocalStorage -->
+    </div>
+  </section>
+
+  <!-- Add Collection -->
+<section id="add-col" class="hidden flex flex-col justify-center items-center gap-6 px-4 py-8">
+  <div class="text-3xl italic mt-6"><h1>ADD A COLLECTION</h1></div>
+  <!-- الفورم دائما في الوسط -->
+  <div class="flex flex-col bg-amber-200 h-auto w-full max-w-[500px] p-6 items-center text-white rounded-lg shadow-lg shadow-amber-700 mt-7">
+    <div class="w-full mb-4">
+      <h1 class="text-black pl-3 font-bold mb-2">Name of collection</h1>
+      <input type="text" class="border-[#FF4800] bg-amber-50 border-2 h-10 w-full rounded-2xl text-black p-4 font-black" />
+    </div>
+    <div class="mt-6">
+      <button id="add-coll-btn" class="bg-[#DF552E] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#ff673a] transition">
+        Add
+      </button>
+    </div>
+  </div>
 </section>
 
 
- <!-- form for coll -->
-  <section id="add-col" class=" hidden flex justify-center items-center gap-6 flex-col ">
-   <div class="text-3xl  italic mt-6">
-    <h1>ADD A COLLECTION</h1>
-  </div>
-    <div class="flex bg-amber-200  h-[300px] w-[500px] items-center justify-center text-white  rounded-lg shadow-lg shadow-amber-700 mt-7 flex-col">
-       <div>
-      <h1 class=" text-black pl-3.5 font-bold"> Name of collection</h1>
-    
-      <input type="text" class="border-[#FF4800] bg-amber-50 border-2 h-8 w-70 rounded-2xl text-black p-4 font-black">
-       </div>
-       <div >
-       <button id="add-coll-btn" class=" gap bg-[#DF552E] w-30 h-10 items-center justify-center mt-8  ">Add</button>
-              </div>
+  <!-- Cards Section -->
+  <section id="card" class="hidden flex flex-col justify-center items-center min-h-[300px] gap-6 px-4 py-8">
+    <div class="text-3xl italic mb-4"><h1>Cards</h1></div>
+    <div class="w-full flex flex-wrap justify-center md:justify-start gap-4">
+      <button id="new-card"
+        class="bg-amber-200 flex h-[250px] w-[250px] sm:h-[300px] sm:w-[300px] items-center justify-center text-white rounded-lg shadow-lg shadow-amber-700 hover:bg-amber-300 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-8 h-8 fill-current">
+          <polygon points="30,12 20,12 20,2 12,2 12,12 2,12 2,20 12,20 12,30 20,30 20,20 30,20"/>
+        </svg>
+      </button>
+      <!-- هنا غادي يجيوا بقية الكارطات من LocalStorage -->
     </div>
-
   </section>
-  <!-- cards -->
-  <section id="card" class=" hidden flex flex-col justify-center items-center min-h-[300px] gap-6 pl-5 ">
-  <div class="text-3xl  italic">
-    <h1>Cards</h1>
+
+  <!-- Add Card -->
+<section id="add-card" class="hidden flex flex-col justify-center items-center gap-6 px-4 py-8">
+  <div class="text-3xl italic mt-6"><h1>ADD A CARD</h1></div>
+  <div class="flex flex-col bg-amber-200 h-auto w-full max-w-[500px] p-6 items-center text-white rounded-lg shadow-lg shadow-amber-700 mt-7">
+    <div class="w-full mb-4">
+      <h1 class="text-black pl-3 font-bold mb-2">The question</h1>
+      <input type="text" class="border-[#FF4800] bg-amber-50 border-2 h-10 w-full rounded-2xl text-black p-4 font-black" />
+    </div>
+    <div class="w-full mb-4">
+      <h1 class="text-black pl-3 font-bold mb-2">The answer</h1>
+      <input type="text" class="border-[#FF4800] bg-amber-50 border-2 h-10 w-full rounded-2xl text-black p-4 font-black" />
+    </div>
+    <div class="mt-6">
+      <button id="add-card-btn" class="bg-[#DF552E] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#ff673a] transition">
+        Add
+      </button>
+    </div>
   </div>
-     <button id="new-card">
-  <div class="relative bg-amber-200  flex h-[300px] w-[300px] items-center justify-center text-white right-150 rounded-lg shadow-lg shadow-amber-700 hover:bg-amber-300 ">
-    <?xml version="1.0"?><svg enable-background="new 0 0 32 32" height="32px" id="svg2" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"><g id="background"><rect fill="none" height="32" width="32"/></g><g id="plus"><g><polygon points="30,12 20,12 20,2 12,2 12,12 2,12 2,20 12,20 12,30 20,30 20,20 30,20   "/></g></g></svg>
-  </div>
-  </button>
 </section>
-<!-- add cards -->
-   <section id="add-card" class="hidden  flex justify-center items-center gap-6 flex-col ">
-   <div class="text-3xl  italic mt-6">
-    <h1>ADD A CARD</h1>
-  </div>
-    <div class="flex bg-amber-200  h-[300px] w-[500px] items-center justify-center text-white  rounded-lg shadow-lg shadow-amber-700 mt-7 flex-col">
-       <div>
-      <h1 class=" text-black pl-3.5 font-bold">The quetion</h1>
-    
-      <input type="text" class="border-[#FF4800] bg-amber-50 border-2 h-8 w-70 rounded-2xl text-black p-4 font-black">
-       </div>
-          <div>
-      <h1 class=" text-black pl-3.5 font-bold mt-2" > The answer</h1>
-    
-      <input type="text" class="border-[#FF4800] bg-amber-50 border-2 h-8 w-70 rounded-2xl text-black p-4 font-black">
-       </div>
-       <div >
-       <button id="add-card-btn" class=" gap bg-[#DF552E] w-30 h-10 items-center justify-center mt-8  ">Add</button>
-              </div>
-    </div>
-
-  </section>
 
 
 
+  <footer class="bg-[rgba(255,72,0,0.5)] w-full h-auto py-6 mt-0 flex justify-center items-center text-center px-4 ">
+    <p>
+      © 2025 Cards. <br />
+      All rights reserved. <br />
+      Built by Bilal using HTML, CSS, JavaScript & Tailwind
+    </p>
+  </footer>
 
-<script src="main.js"></script>
-    <footer class="bg-[rgba(255,72,0,0.5)]  w-full h-[120px]  mt-100 flex justify-center items-center">
-        <p class=" text-center">© 2025 Cards. <br>
-            All rights reserved. <br>
-            Built by Bilal using HTML, CSS, JavaScript & Tailwind</p>
-    </footer>
+  <script src="main.js"></script>
 </body>
-
 </html>

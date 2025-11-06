@@ -3,9 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/output.css">
     <title>QUIZ</title>
 </head>
+<style>
+      body {
+      background-image: url(image.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+    }
+</style>
 <body>
+<header class="bg-[#FF4800] w-full h-[80px] flex flex-row justify-between">
+        <h1 class="font-bold text-3xl pl-5 pt-4 text-amber-50">Cards</h1>
+        <nav class=" top-0 right-0 space-x-4.5 font-bold text-[#fdf8f8] text-2xl pr-5 pt-5">
+            <a class="hover:underline " href="index.html">Home</a>
+            <a class="hover:underline " href="slashcard.html">FlashCards</a>
+            <a class="hover:underline " href="quize.html">Quiz</a>
+        </nav>
+    </header>
+      <section id="collection" class="flex flex-col justify-center items-center min-h-[300px] gap-6 px-6 py-8 md:px-20">
+    <div class="text-3xl italic mb-4"><h1>Quiiz Time</h1></div>
+    <div id="question" class="text-xl font-mono "> suup</div>
+    <div id="q1" class="flex items-center justify-center border-[#FF4800] bg-amber-50 border-2 h-10 w-full rounded-2xl text-black p-4 font-black hover:bg-gray-200" >visca</div>
+    <div id="q2" class= "flex items-center justify-center border-[#FF4800] bg-amber-50 border-2 h-10 w-full rounded-2xl text-black p-4 font-black hover:bg-gray-200" >barca</div>
+    <div id="q3" class="flex items-center justify-center border-[#FF4800] bg-amber-50 border-2 h-10 w-full rounded-2xl text-black p-4 font-black hover:bg-gray-200" >visca</div>
+    <div id="q4" class="flex items-center justify-center border-[#FF4800] bg-amber-50 border-2 h-10 w-full rounded-2xl text-black p-4 font-black hover:bg-gray-200" >catalonia</div>
+            <button id="next" class="flex items-center justify-center bg-[#DF552E] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#ff673a] transition">
+        NEXT
+      </button>
+
+    </section>
+    
+
+ 
+  <footer class="bg-[rgba(255,72,0,0.5)] w-full h-auto py-6 mt-50 flex justify-center items-center text-center px-4 ">
+    <p>
+      © 2025 Cards. <br />
+      All rights reserved. <br />
+      Built by Bilal using HTML, CSS, JavaScript & Tailwind
+    </p>
+  </footer>
     
 </body>
 </html>
