@@ -22,7 +22,7 @@ loadData();
 
 function loadData() {
   // نحاول نقرأ من JSON
-  fetch("./flashcards.json")
+  fetch("./flashcard.json")
     .then((res) => {
       if (!res.ok) throw new Error("File not found");
       return res.json();
