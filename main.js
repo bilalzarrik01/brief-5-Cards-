@@ -1,57 +1,44 @@
-// ------------------ العناصر ديال HTML ------------------
 const col = document.getElementById("collection");
 const add_col = document.getElementById("add-col");
 const card = document.getElementById("card");
 const add_card = document.getElementById("add-card");
-
 const new_col = document.getElementById("new-col");
 const add_coll = document.getElementById("add-coll-btn");
 const new_card = document.getElementById("new-card");
 const add_card_btn = document.getElementById("add-card-btn");
-
-// 🔹 المتغيرات الإضافية
-const inputCollection = add_col.querySelector("input"); // input ديال اسم المجموعة
-const inputsCard = add_card.querySelectorAll("input"); // question و answer
+const inputCollection = add_col.querySelector("input");
+const inputsCard = add_card.querySelectorAll("input");
 
 let data = { collections: [] };
 let currentCollectionId = null;
 
-// ------------------ تحميل البيانات ------------------
-// نحاول نجيب البيانات من JSON، وإذا فشلت نجيبها من localStorage
 loadData();
 
 function loadData() {
-  // نحاول نقرأ من JSON
   fetch("./flashcard.json")
     .then((res) => {
       if (!res.ok) throw new Error("File not found");
       return res.json();
     })
     .then((jsonData) => {
-      console.log("✅ Data loaded from JSON file");
       data = jsonData;
       displayCollections();
     })
     .catch(() => {
-      // إذا فشل التحميل من JSON نستعمل localStorage
-      console.warn("⚠️ Could not load JSON, loading from localStorage...");
       if (localStorage.getItem("flashcardsData")) {
         data = JSON.parse(localStorage.getItem("flashcardsData"));
         displayCollections();
       } else {
-        console.log("📂 No data found, starting empty.");
         data = { collections: [] };
         displayCollections();
       }
     });
 }
 
-// ------------------ دالة حفظ البيانات ------------------
 function saveData() {
   localStorage.setItem("flashcardsData", JSON.stringify(data));
 }
 
-// ------------------ عرض المجموعات ------------------
 function displayCollections() {
   col.innerHTML = `
     <div class="text-3xl italic mb-4"><h1>Collections</h1></div>
@@ -61,36 +48,29 @@ function displayCollections() {
       </svg>
     </button>
   `;
-
   const newColBtn = col.querySelector("#new-col");
   newColBtn.addEventListener("click", () => {
     col.classList.add("hidden");
     add_col.classList.remove("hidden");
   });
-
-  // عرض المجموعات المخزنة
   data.collections.forEach((collection) => {
     const div = document.createElement("div");
     div.className =
       "bg-amber-100 p-4 m-3 rounded-lg shadow-md hover:bg-amber-200 cursor-pointer text-center font-bold w-[250px]";
     div.textContent = collection.name;
-
     div.addEventListener("click", () => {
       currentCollectionId = collection.id;
       showCards(collection);
     });
-
     col.appendChild(div);
   });
 }
 
-// ------------------ عرض الكارطات ديال مجموعة معينة ------------------
 function showCards(collection) {
   card.classList.remove("hidden");
   col.classList.add("hidden");
   add_col.classList.add("hidden");
   add_card.classList.add("hidden");
-
   card.innerHTML = `
     <div class="text-3xl italic mb-4"><h1>${collection.name}</h1></div>
     <button id="new-card" class="bg-amber-200 flex h-[300px] w-[300px] items-center justify-center text-white rounded-lg shadow-lg shadow-amber-700 hover:bg-amber-300">
@@ -99,18 +79,14 @@ function showCards(collection) {
       </svg>
     </button>
   `;
-
   const newCardBtn = card.querySelector("#new-card");
   newCardBtn.addEventListener("click", () => {
     card.classList.add("hidden");
     add_card.classList.remove("hidden");
   });
-
-  // نعرض الكارطات الموجودة
   collection.cards.forEach((c) => {
     const div = document.createElement("div");
-    div.className =
-      "flip-card bg-transparent w-[300px] h-[200px] m-3 perspective";
+    div.className = "flip-card bg-transparent w-[300px] h-[200px] m-3 perspective";
     div.innerHTML = `
       <div class="flip-card-inner transition-transform duration-500 transform-style-preserve-3d hover:rotate-y-180">
         <div class="flip-card-front bg-white border border-amber-300 rounded-lg shadow-md flex items-center justify-center font-bold p-4">
@@ -125,9 +101,6 @@ function showCards(collection) {
   });
 }
 
-// ------------------ الأحداث ------------------
-
-// إضافة مجموعة جديدة
 add_coll.addEventListener("click", (e) => {
   e.preventDefault();
   const name = inputCollection.value.trim();
@@ -135,13 +108,11 @@ add_coll.addEventListener("click", (e) => {
     alert("Please enter a name!");
     return;
   }
-
   const newCollection = {
     id: Date.now(),
     name,
     cards: [],
   };
-
   data.collections.push(newCollection);
   saveData();
   inputCollection.value = "";
@@ -150,25 +121,20 @@ add_coll.addEventListener("click", (e) => {
   displayCollections();
 });
 
-// إضافة بطاقة جديدة
 add_card_btn.addEventListener("click", (e) => {
   e.preventDefault();
-
   const question = inputsCard[0].value.trim();
   const answer = inputsCard[1].value.trim();
-
   if (question === "" || answer === "") {
     alert("Please fill both fields!");
     return;
   }
-
   const collection = data.collections.find((c) => c.id === currentCollectionId);
   collection.cards.push({ question, answer });
   saveData();
-
   inputsCard[0].value = "";
   inputsCard[1].value = "";
-
   add_card.classList.add("hidden");
   showCards(collection);
 });
+
