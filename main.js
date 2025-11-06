@@ -16,18 +16,42 @@ const inputsCard = add_card.querySelectorAll("input"); // question و answer
 let data = { collections: [] };
 let currentCollectionId = null;
 
-// if there is some thing
-if (localStorage.getItem("flashcardsData")) {
-  data = JSON.parse(localStorage.getItem("flashcardsData"));
-  displayCollections();
+// ------------------ تحميل البيانات ------------------
+// نحاول نجيب البيانات من JSON، وإذا فشلت نجيبها من localStorage
+loadData();
+
+function loadData() {
+  // نحاول نقرأ من JSON
+  fetch("./flashcards.json")
+    .then((res) => {
+      if (!res.ok) throw new Error("File not found");
+      return res.json();
+    })
+    .then((jsonData) => {
+      console.log("✅ Data loaded from JSON file");
+      data = jsonData;
+      displayCollections();
+    })
+    .catch(() => {
+      // إذا فشل التحميل من JSON نستعمل localStorage
+      console.warn("⚠️ Could not load JSON, loading from localStorage...");
+      if (localStorage.getItem("flashcardsData")) {
+        data = JSON.parse(localStorage.getItem("flashcardsData"));
+        displayCollections();
+      } else {
+        console.log("📂 No data found, starting empty.");
+        data = { collections: [] };
+        displayCollections();
+      }
+    });
 }
 
-// save
+// ------------------ دالة حفظ البيانات ------------------
 function saveData() {
   localStorage.setItem("flashcardsData", JSON.stringify(data));
 }
 
-// save col
+// ------------------ عرض المجموعات ------------------
 function displayCollections() {
   col.innerHTML = `
     <div class="text-3xl italic mb-4"><h1>Collections</h1></div>
@@ -60,7 +84,7 @@ function displayCollections() {
   });
 }
 
-// عرض الكارطات ديال مجموعة معينة
+// ------------------ عرض الكارطات ديال مجموعة معينة ------------------
 function showCards(collection) {
   card.classList.remove("hidden");
   col.classList.add("hidden");
@@ -86,14 +110,24 @@ function showCards(collection) {
   collection.cards.forEach((c) => {
     const div = document.createElement("div");
     div.className =
-      "bg-white p-3 m-2 rounded-lg shadow-md w-[300px] text-center border border-amber-300";
-    div.innerHTML = `<p class='font-bold'>${c.question}</p><p class='text-gray-700 mt-1'>${c.answer}</p>`;
+      "flip-card bg-transparent w-[300px] h-[200px] m-3 perspective";
+    div.innerHTML = `
+      <div class="flip-card-inner transition-transform duration-500 transform-style-preserve-3d hover:rotate-y-180">
+        <div class="flip-card-front bg-white border border-amber-300 rounded-lg shadow-md flex items-center justify-center font-bold p-4">
+          ${c.question}
+        </div>
+        <div class="flip-card-back bg-amber-100 border border-amber-300 rounded-lg shadow-md flex items-center justify-center text-gray-800 p-4 rotate-y-180">
+          ${c.answer}
+        </div>
+      </div>
+    `;
     card.appendChild(div);
   });
 }
 
-
 // ------------------ الأحداث ------------------
+
+// إضافة مجموعة جديدة
 add_coll.addEventListener("click", (e) => {
   e.preventDefault();
   const name = inputCollection.value.trim();
@@ -116,6 +150,7 @@ add_coll.addEventListener("click", (e) => {
   displayCollections();
 });
 
+// إضافة بطاقة جديدة
 add_card_btn.addEventListener("click", (e) => {
   e.preventDefault();
 
