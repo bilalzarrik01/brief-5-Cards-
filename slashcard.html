@@ -20,15 +20,30 @@
 </head>
 
 <body class="text-gray-900">
-  <!-- Header -->
- <header class="bg-[#FF4800] w-full h-[80px] flex flex-row justify-between">
-        <h1 class="font-bold text-3xl pl-5 pt-4 text-amber-50">Cards</h1>
-        <nav class=" top-0 right-0 space-x-4.5 font-bold text-[#fdf8f8] text-2xl pr-5 pt-5">
-            <a class="hover:underline " href="index.html">Home</a>
-            <a class="hover:underline " href="slashcard.html">FlashCards</a>
-            <a class="hover:underline " href="quize.html">Quiz</a>
-        </nav>
-    </header>
+ <header class="bg-[#FF4800] w-full flex flex-wrap items-center justify-between px-5 py-4">
+
+  <h1 class="font-bold text-3xl text-amber-50">Cards</h1>
+
+
+  <button id="menu-btn" class="block md:hidden text-amber-50 text-3xl focus:outline-none">
+    ☰
+  </button>
+  <nav id="menu" class="hidden w-full md:flex md:w-auto md:space-x-6 font-bold text-[#fdf8f8] text-2xl mt-3 md:mt-0">
+    <a class="block md:inline hover:underline" href="index.html">Home</a>
+    <a class="block md:inline hover:underline" href="slashcard.html">FlashCards</a>
+    <a class="block md:inline hover:underline" href="quize.html">Quiz</a>
+  </nav>
+</header>
+
+<script>
+// menu mobile
+  const menuBtn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+
+  menuBtn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>
 
   <!-- Collections Section -->
   <section id="collection" class="flex flex-col justify-center items-center min-h-[300px] gap-6 px-4 py-8">
@@ -40,14 +55,14 @@
           <polygon points="30,12 20,12 20,2 12,2 12,12 2,12 2,20 12,20 12,30 20,30 20,20 30,20"/>
         </svg>
       </button>
-      <!-- هنا غادي يجيوا بقية الكولكشنات من LocalStorage -->
+   
     </div>
   </section>
 
   <!-- Add Collection -->
 <section id="add-col" class="hidden flex flex-col justify-center items-center gap-6 px-4 py-8">
   <div class="text-3xl italic mt-6"><h1>ADD A COLLECTION</h1></div>
-  <!-- الفورم دائما في الوسط -->
+
   <div class="flex flex-col bg-amber-200 h-auto w-full max-w-[500px] p-6 items-center text-white rounded-lg shadow-lg shadow-amber-700 mt-7">
     <div class="w-full mb-4">
       <h1 class="text-black pl-3 font-bold mb-2">Name of collection</h1>
@@ -72,7 +87,7 @@
           <polygon points="30,12 20,12 20,2 12,2 12,12 2,12 2,20 12,20 12,30 20,30 20,20 30,20"/>
         </svg>
       </button>
-      <!-- هنا غادي يجيوا بقية الكارطات من LocalStorage -->
+
     </div>
   </section>
 
