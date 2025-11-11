@@ -1,3 +1,4 @@
+
 // ------------------ HTML ELEMENTS ------------------
 const col = document.getElementById("collection");
 const add_col = document.getElementById("add-col");
@@ -38,7 +39,7 @@ function displayCollections() {
   const newColBtn = document.createElement("button");
   newColBtn.id = "new-col";
   newColBtn.className =
-    "bg-amber-200 flex h-[250px] w-[250px] sm:h-[300px] sm:w-[300px] items-center justify-center text-white rounded-lg shadow-lg shadow-amber-700 hover:bg-amber-300 transition";
+    "bg-amber-200 flex h-[250px] w-[250px] sm:h-[300px] sm:w-[300px] items-center justify-center text-white rounded-lg shadow-lg shadow-amber-700 hover:bg-amber-300hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-linear p-4";
   newColBtn.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-8 h-8 fill-current">
       <polygon points="30,12 20,12 20,2 12,2 12,12 2,12 2,20 12,20 12,30 20,30 20,20 30,20"/>
@@ -54,7 +55,7 @@ function displayCollections() {
   data.collections.forEach((collection) => {
     const div = document.createElement("div");
     div.className =
-      "bg-amber-100 flex flex-col justify-center items-center p-4 m-3 rounded-lg shadow-md hover:bg-amber-200 cursor-pointer text-center font-bold w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] transition";
+      "bg-amber-100 flex flex-col justify-center items-center p-4 m-3 rounded-lg shadow-md hover:bg-amber-200 cursor-pointer text-center font-bold w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-linear p-4";
     div.textContent = collection.name;
 
     div.addEventListener("click", () => {
@@ -64,6 +65,8 @@ function displayCollections() {
 
     container.appendChild(div);
   });
+  const backBtn = document.createElement("button");
+
 }
 
 // ------------------ DISPLAY CARDS ------------------
@@ -75,12 +78,21 @@ function showCards(collection) {
 
   const container = card.querySelector("div.w-full");
   container.innerHTML = "";
+    const backBtn = document.createElement("button");
+backBtn.textContent = "← Back";
+backBtn.className =
+  "bg-[#FF4800] text-white rounded-lg shadow-md flex justify-center items-center p-4 transition";
+backBtn.addEventListener("click", () => {
+  card.classList.add("hidden");
+  col.classList.remove("hidden");
+});
+container.appendChild(backBtn);
 
   // Add new card button
   const newCardBtn = document.createElement("button");
   newCardBtn.id = "new-card";
   newCardBtn.className =
-    "bg-amber-200 flex h-[250px] w-[250px] sm:h-[300px] sm:w-[300px] items-center justify-center text-white rounded-lg shadow-lg shadow-amber-700 hover:bg-amber-300 transition";
+    "bg-amber-200 flex h-[250px] w-[250px] sm:h-[300px] sm:w-[300px] items-center justify-center text-white rounded-lg shadow-lg shadow-amber-700 hover:bg-amber-300 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-linear p-4";
   newCardBtn.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-8 h-8 fill-current">
       <polygon points="30,12 20,12 20,2 12,2 12,12 2,12 2,20 12,20 12,30 20,30 20,20 30,20"/>
@@ -93,16 +105,45 @@ function showCards(collection) {
   container.appendChild(newCardBtn);
 
   // Render all cards
-  collection.cards.forEach((c) => {
-    const div = document.createElement("div");
-    div.className =
-      "bg-white p-4 m-3 rounded-lg shadow-md w-[250px] sm:w-[300px] text-center border border-amber-300 transition hover:shadow-lg";
-    div.innerHTML = `
-      <p class='font-bold mb-2 text-[#FF4800]'>${c.question}</p>
-      <p class='text-gray-700 mt-1 font-semibold'>${c.answer}</p>
-    `;
-    container.appendChild(div);
+collection.cards.forEach((c) => {
+  const cardWrapper = document.createElement("div");
+  cardWrapper.className =
+    "w-[250px] sm:w-[300px] h-[250px] sm:h-[300px] perspective cursor-pointer";
+
+  // container ديال الوجهين
+  const cardInner = document.createElement("div");
+  cardInner.className =
+    "relative w-full h-full transition-transform duration-500 transform-style-preserve-3d";
+
+  // face (الوجه الأمامي)
+  const front = document.createElement("div");
+  front.className =
+    "absolute w-full h-full bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4 backface-hidden border border-amber-300 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-linear p-4";
+  front.innerHTML = `
+    <p class='font-bold mb-2 text-[#FF4800] text-lg'>${c.question}</p>
+    <p class='text-gray-400 italic text-sm'>(Click to see answer)</p>
+  `;
+
+  // back (الوجه الخلفي)
+  const back = document.createElement("div");
+  back.className =
+    "absolute w-full h-full bg-[#FF4800] text-white rounded-lg shadow-md flex justify-center items-center p-4 rotate-y-180 backface-hidden border border-amber-300 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-linear p-4";
+  back.innerHTML = `
+    <p class='font-semibold text-lg text-center'>${c.answer}</p>
+  `;
+
+  // combine
+  cardInner.appendChild(front);
+  cardInner.appendChild(back);
+  cardWrapper.appendChild(cardInner);
+  container.appendChild(cardWrapper);
+
+  // click event
+  cardWrapper.addEventListener("click", () => {
+    cardInner.classList.toggle("rotate-y-180");
   });
+});
+
 }
 
 // ------------------ ADD NEW COLLECTION ------------------
@@ -152,3 +193,4 @@ add_card_btn.addEventListener("click", (e) => {
   add_card.classList.add("hidden");
   showCards(collection);
 });
+

@@ -16,13 +16,29 @@
     #add-coll-btn {
       box-shadow: 5px 5px rgba(36, 30, 27, 0.5);
     }
+    .perspective {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
   </style>
 </head>
 
 <body class="text-gray-900">
  <header class="bg-[#FF4800] w-full flex flex-wrap items-center justify-between px-5 py-4">
 
-  <h1 class="font-bold text-3xl text-amber-50">Cards</h1>
+  <h1 class="font-bold text-3xl text-amber-50"><a href="index.html" >Cards</a></h1>
 
 
   <button id="menu-btn" class="block md:hidden text-amber-50 text-3xl focus:outline-none">
@@ -34,6 +50,7 @@
     <a class="block md:inline hover:underline" href="quize.html">Quiz</a>
   </nav>
 </header>
+
 
 <script>
 // menu mobile
@@ -57,6 +74,7 @@
       </button>
    
     </div>
+
   </section>
 
   <!-- Add Collection -->
@@ -74,6 +92,7 @@
       </button>
     </div>
   </div>
+  
 </section>
 
 
@@ -87,8 +106,9 @@
           <polygon points="30,12 20,12 20,2 12,2 12,12 2,12 2,20 12,20 12,30 20,30 20,20 30,20"/>
         </svg>
       </button>
-
+  
     </div>
+
   </section>
 
   <!-- Add Card -->

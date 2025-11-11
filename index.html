@@ -27,10 +27,10 @@
 <body>
 <header class="bg-[#FF4800] w-full flex flex-wrap items-center justify-between px-5 py-4">
 
-  <h1 class="font-bold text-3xl text-amber-50">Cards</h1>
+  <h1 class="font-bold text-3xl text-amber-50"><a href="index.html" >Cards</a></h1>
 
 
-  <button id="menu-btn" class="block md:hidden text-amber-50 text-3xl focus:outline-none">
+  <button id="menu-btn" class="block md:hidden text-amber-50 text-3xl focus:outline-none hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-linear p-4">
     ☰
   </button>
   <nav id="menu" class="hidden w-full md:flex md:w-auto md:space-x-6 font-bold text-[#fdf8f8] text-2xl mt-3 md:mt-0">
@@ -50,12 +50,12 @@
   });
 </script>
     <section class="justify-center items-center ">
-    <div class="items-center justify-center flex text-4xl font-bold mt-10 text-[#FF4800]">
+    <div class="items-center justify-center flex text-4xl font-bold mt-10 text-[#FF4800] animate-">
         <h1>WELCOME !</h1>
     </div>
     <div class="flex items-center justify-center mt-10">
         <div
-            class="bg-[rgba(255,255,255,0.5)] text-xl max-w-full px-5 p-8 text-center rounded-2xl shadow-amber-700 shadow-2xl md:text-2xl  md:max-w-3xl">
+            class="bg-[rgba(255,255,255,0.5)] text-xl max-w-full px-5 p-8 text-center rounded-2xl shadow-amber-700 shadow-2xl md:text-2xl  md:max-w-3xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-linear p-4">
 
             <p class=" text-center w-70 md:w-120 ">Welcome to Cards, your interactive learning space!  Create your own flashcard
                 collections to review and memorize key concepts easily, then test your knowledge with built-in quizzes. 
@@ -63,15 +63,16 @@
                 it.</p>
         </div>
     </div>
-    <div id="btn" class="flex justify-center items-center flex-row gap-20 mt-10 text-amber-50">
-        <button id="flashcard-btn" class="flex gap bg-[#DF552E] w-30 h-10 items-center justify-center text-xl  "><a
+    <div id="btn" class="flex justify-center items-center flex-row gap-20 mt-10 text-amber-50 "  >
+        <button id="flashcard-btn" class="flex gap bg-[#DF552E] w-30 h-10 items-center justify-center text-xl pointer-coarse: "><a
                 class="" href="slashcard.html">Flash Cards</a></button>
-        <button id="quiz-btn" class="flex gap bg-[#DF552E] w-30 h-10 items-center justify-center "><a
+        <button id="quiz-btn" class="flex gap bg-[#DF552E] w-30 h-10 items-center justify-center pointer-coarse:  "><a
                 href="quize.html">Quiz</a></button>
     </div>
  </section>
 
-    <footer class="bg-[rgba(255,72,0,0.5)]  w-full h-[120px] flex mt-60 flex justify-center items-center  ">
+
+    <footer class="bg-[rgba(255,72,0,0.5)]  w-full h-[120px]  mt-60 flex justify-center items-center  ">
         <p class=" text-center">© 2025 Cards. <br>
             All rights reserved. <br>
             Built by Bilal using HTML, CSS, JavaScript & Tailwind</p>

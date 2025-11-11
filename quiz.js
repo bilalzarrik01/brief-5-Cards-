@@ -21,7 +21,7 @@ fetch("quiz.json")
   })
   .catch(err => console.error("Error loading JSON:", err));
 
-// دالة لعرض السؤال الحالي
+// display que
 function showQuestion() {
   let card = data[current];
   question.textContent = card.question;
@@ -64,7 +64,7 @@ nextBtn.addEventListener("click", () => {
         🎉 Quiz Finished! <br><br>
         Your Score: ${score} / ${data.length} <br><br>
         <button onclick="location.reload()" 
-          class="mt-6 bg-[#DF552E] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#ff673a] transition mt-7">
+          class=" bg-[#DF552E] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#ff673a] transition mt-7">
           Retry
         </button>
       </div>
