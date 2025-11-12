@@ -1,7 +1,6 @@
-let current = 0; // رقم السؤال الحالي
-let score = 0; // النقاط
+let current = 0;
+let score = 0;
 
-// العناصر من HTML
 let question = document.getElementById("question");
 let s1 = document.getElementById("q1");
 let s2 = document.getElementById("q2");
@@ -12,7 +11,6 @@ let nextBtn = document.getElementById("next");
 let buttons = [s1, s2, s3, s4];
 let data = [];
 
-// تحميل الأسئلة من JSON
 fetch("quiz.json")
   .then(res => res.json())
   .then(json => {
@@ -21,19 +19,19 @@ fetch("quiz.json")
   })
   .catch(err => console.error("Error loading JSON:", err));
 
-// display que
 function showQuestion() {
   let card = data[current];
   question.textContent = card.question;
 
   for (let i = 0; i < 4; i++) {
     buttons[i].textContent = card.suggestions[i];
-    buttons[i].style.backgroundColor = "#FEF3C7"; // نفس لون amber-50
-    buttons[i].style.pointerEvents = "auto"; // نفعّل الأزرار من جديد
+    buttons[i].style.backgroundColor = "#FEF3C7";
+    buttons[i].style.pointerEvents = "auto";
   }
+
+  nextBtn.disabled = true;
 }
 
-// التحقق من الجواب
 buttons.forEach(btn => {
   btn.addEventListener("click", e => {
     let chosen = e.target.textContent.trim();
@@ -44,21 +42,23 @@ buttons.forEach(btn => {
       score++;
     } else {
       e.target.style.backgroundColor = "lightcoral";
+      buttons.forEach(b => {
+        if (b.textContent.trim() === correct) {
+          b.style.backgroundColor = "lightgreen";
+        }
+      });
     }
 
-    // تعطيل الأزرار بعد ما يختار
     buttons.forEach(b => (b.style.pointerEvents = "none"));
+    nextBtn.disabled = false;
   });
 });
 
-// زر NEXT باش يدوز للسؤال الموالي
 nextBtn.addEventListener("click", () => {
-  current++;
-
-  if (current < data.length) {
+  if (current < data.length - 1) {
+    current++;
     showQuestion();
   } else {
-    // ملي يسالي الكويز
     document.getElementById("collection").innerHTML = `
       <div class="bg-white p-10 rounded-2xl text-center text-3xl font-bold shadow-md">
         🎉 Quiz Finished! <br><br>

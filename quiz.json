@@ -1,114 +1,114 @@
 {
-
   "cards": [
     {
       "id": 1,
-      "question": "What does <a> do??",
+      "question": "What does the <a> tag do in HTML?",
       "suggestions": [
-        "Make the text bold",
+        "Makes text bold",
         "Creates a hyperlink",
-        "hidden",
-        "pararaphe"
+        "Displays an image",
+        "Adds a paragraph"
       ],
       "answer": "Creates a hyperlink"
     },
     {
       "id": 2,
-      "question": "Which planet is known as the Red Planet?",
+      "question": "Which tag is used to insert an image in HTML?",
       "suggestions": [
-        "Earth",
-        "Mars",
-        "Venus",
-        "Jupiter"
+        "<img>",
+        "<image>",
+        "<pic>",
+        "<src>"
       ],
-      "answer": "Mars"
+      "answer": "<img>"
     },
     {
       "id": 3,
-      "question": "Which language is used for web styling?",
+      "question": "Which language is used to style web pages?",
       "suggestions": [
-        "Python",
         "HTML",
+        "JavaScript",
         "CSS",
-        "C++"
+        "Python"
       ],
       "answer": "CSS"
     },
-        {
+    {
       "id": 4,
-      "question": "Which planet is known as the Red Planet?",
+      "question": "What does CSS stand for?",
       "suggestions": [
-        "Earth",
-        "Mars",
-        "Venus",
-        "Jupiter"
+        "Colorful Style Sheets",
+        "Cascading Style Sheets",
+        "Computer Style Sheets",
+        "Creative Style System"
       ],
-      "answer": "Mars"
+      "answer": "Cascading Style Sheets"
     },
-        {
+    {
       "id": 5,
-      "question": "Which planet is known as the Red Planet?",
+      "question": "Which property changes the background color in CSS?",
       "suggestions": [
-        "Earth",
-        "Mars",
-        "Venus",
-        "Jupiter"
+        "color",
+        "background-color",
+        "bg",
+        "background-style"
       ],
-      "answer": "Mars"
+      "answer": "background-color"
     },
-        {
+    {
       "id": 6,
-      "question": "Which planet is known as the Red Planet?",
+      "question": "Which symbol is used for comments in JavaScript?",
       "suggestions": [
-        "Earth",
-        "Mars",
-        "Venus",
-        "Jupiter"
+        "//",
+        "/* */",
+        "#",
+        "<!-- -->"
       ],
-      "answer": "Mars"
+      "answer": "//"
     },
-        {
+    {
       "id": 7,
-      "question": "Which planet is known as the Red Planet?",
+      "question": "How do you create a function in JavaScript?",
       "suggestions": [
-        "Earth",
-        "Mars",
-        "Venus",
-        "Jupiter"
+        "function myFunction()",
+        "def myFunction()",
+        "create myFunction()",
+        "func myFunction()"
       ],
-      "answer": "Mars"
-    },    {
+      "answer": "function myFunction()"
+    },
+    {
       "id": 8,
-      "question": "Which planet is known as the Red Planet?",
+      "question": "Which keyword is used to declare a variable in JavaScript?",
       "suggestions": [
-        "Earth",
-        "Mars",
-        "Venus",
-        "Jupiter"
+        "var",
+        "int",
+        "String",
+        "declare"
       ],
-      "answer": "Mars"
+      "answer": "var"
     },
     {
       "id": 9,
-      "question": "Which planet is known as the Red Planet?",
+      "question": "In Tailwind CSS, which class adds margin to all sides?",
       "suggestions": [
-        "Earth",
-        "Mars",
-        "Venus",
-        "Jupiter"
+        "p-4",
+        "m-4",
+        "gap-4",
+        "mx-4"
       ],
-      "answer": "Mars"
+      "answer": "m-4"
     },
-        {
+    {
       "id": 10,
-      "question": "Which planet is known as the Red Planet?",
+      "question": "Which Tailwind class makes text bold?",
       "suggestions": [
-        "Earth",
-        "Mars",
-        "Venus",
-        "Jupiter"
+        "text-lg",
+        "font-bold",
+        "bold-text",
+        "fw-bold"
       ],
-      "answer": "Mars"
+      "answer": "font-bold"
     }
   ]
 }
