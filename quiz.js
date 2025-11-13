@@ -23,6 +23,12 @@ fetch("quiz.json")
   .then(json => {
     data = json.cards;
     showQuestion();
+      if(high_score < score){
+    high_score = score ;
+    localStorage.setItem("high" , high_score);
+  }
+  high.textContent = "YOUR PRIME : " + high_score;
+  return ;
   })
   .catch(err => console.error("Error loading JSON:", err));
 
@@ -80,11 +86,6 @@ nextBtn.addEventListener("click", () => {
       </div>
     `;
   }
-  if(high_score < score){
-    high_score = score ;
-    localStorage.setItem("high" , high_score);
-  }
-  high.textContent = "YOUR PRIME : " + high_score;
-  return ;
+
 });
 
