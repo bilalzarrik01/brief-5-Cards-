@@ -14,6 +14,7 @@ const inputsCard = add_card.querySelectorAll("input");
 let data = { collections: [] };
 let currentCollectionId = null;
 
+
 // LOAD DATA
 if (localStorage.getItem("flashcardsData")) {
   data = JSON.parse(localStorage.getItem("flashcardsData"));

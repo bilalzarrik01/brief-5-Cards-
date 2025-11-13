@@ -1,12 +1,19 @@
 let current = 0;
 let score = 0;
 
+
+const high = document.getElementById("high");
+
 let question = document.getElementById("question");
 let s1 = document.getElementById("q1");
 let s2 = document.getElementById("q2");
 let s3 = document.getElementById("q3");
 let s4 = document.getElementById("q4");
 let nextBtn = document.getElementById("next");
+let high_score = parseInt(localStorage.getItem("high")) || 0;
+
+high_score.textContent = "Your prime is :  " + high_score ;
+
 
 let buttons = [s1, s2, s3, s4];
 let data = [];
@@ -59,7 +66,9 @@ nextBtn.addEventListener("click", () => {
   if (current < data.length - 1) {
     current++;
     showQuestion();
-  } else {
+  } 
+  
+  else {
     document.getElementById("collection").innerHTML = `
       <div class="bg-white p-10 rounded-2xl text-center text-3xl font-bold shadow-md">
         🎉 Quiz Finished! <br><br>
@@ -71,4 +80,11 @@ nextBtn.addEventListener("click", () => {
       </div>
     `;
   }
+  if(high_score < score){
+    high_score = score ;
+    localStorage.setItem("high" , high_score);
+  }
+  high.textContent = "YOUR PRIME : " + high_score;
+  return ;
 });
+
