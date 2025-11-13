@@ -1,5 +1,5 @@
 
-// ------------------ HTML ELEMENTS ------------------
+// HTML ELEMENTS 
 const col = document.getElementById("collection");
 const add_col = document.getElementById("add-col");
 const card = document.getElementById("card");
@@ -14,7 +14,7 @@ const inputsCard = add_card.querySelectorAll("input");
 let data = { collections: [] };
 let currentCollectionId = null;
 
-// ------------------ LOAD DATA ------------------
+// LOAD DATA
 if (localStorage.getItem("flashcardsData")) {
   data = JSON.parse(localStorage.getItem("flashcardsData"));
 } else {
@@ -25,12 +25,12 @@ displayCollections();
 
 
 
-// ------------------ SAVE DATA ------------------
+// SAVE DATA
 function saveData() {
   localStorage.setItem("flashcardsData", JSON.stringify(data));
 }
 
-// ------------------ DISPLAY COLLECTIONS ------------------
+// DISPLAY COLLECTIONS 
 function displayCollections() {
   const container = col.querySelector("div.w-full");
   container.innerHTML = "";
@@ -69,7 +69,9 @@ function displayCollections() {
 
 }
 
-// ------------------ DISPLAY CARDS ------------------
+
+// DISPLAY CARDS 
+
 function showCards(collection) {
   card.classList.remove("hidden");
   col.classList.add("hidden");
@@ -110,12 +112,12 @@ collection.cards.forEach((c) => {
   cardWrapper.className =
     "w-[250px] sm:w-[300px] h-[250px] sm:h-[300px] perspective cursor-pointer";
 
-  // container ديال الوجهين
+  // container 
   const cardInner = document.createElement("div");
   cardInner.className =
     "relative w-full h-full transition-transform duration-500 transform-style-preserve-3d";
 
-  // face (الوجه الأمامي)
+  // face
   const front = document.createElement("div");
   front.className =
     "absolute w-full h-full bg-white rounded-lg shadow-md flex flex-col justify-center items-center p-4 backface-hidden border border-amber-300 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-linear p-4";
@@ -124,7 +126,7 @@ collection.cards.forEach((c) => {
     <p class='text-gray-400 italic text-sm'>(Click to see answer)</p>
   `;
 
-  // back (الوجه الخلفي)
+  // back 
   const back = document.createElement("div");
   back.className =
     "absolute w-full h-full bg-[#FF4800] text-white rounded-lg shadow-md flex justify-center items-center p-4 rotate-y-180 backface-hidden border border-amber-300 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-linear p-4";
@@ -146,7 +148,7 @@ collection.cards.forEach((c) => {
 
 }
 
-// ------------------ ADD NEW COLLECTION ------------------
+// ADD NEW COLLECTION 
 add_coll.addEventListener("click", (e) => {
   e.preventDefault();
   const name = inputCollection.value.trim();
@@ -171,7 +173,7 @@ add_coll.addEventListener("click", (e) => {
   displayCollections();
 });
 
-// ------------------ ADD NEW CARD ------------------
+// ADD NEW CARD 
 add_card_btn.addEventListener("click", (e) => {
   e.preventDefault();
 

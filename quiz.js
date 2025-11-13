@@ -54,6 +54,7 @@ buttons.forEach(btn => {
   });
 });
 
+
 nextBtn.addEventListener("click", () => {
   if (current < data.length - 1) {
     current++;
