@@ -22,6 +22,28 @@
     #quiz-btn {
         box-shadow: 5px 5px rgba(36, 30, 27, 0.5);
     }
+      /*  slide from top */
+  @keyframes fadeSlideDown {
+    0% { opacity: 0; transform: translateY(-40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  
+
+/* the box */
+  @keyframes floatBox {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
+
+  /* Glow for welcome title */
+  @keyframes glow {
+    0% { text-shadow: 0 0 5px #ff4800; }
+    50% { text-shadow: 0 0 15px #ff4800; }
+    100% { text-shadow: 0 0 5px #ff4800; }
+  }
+
 </style>
 
 <body>
@@ -53,12 +75,15 @@
   });
 </script>
     <section class="justify-center items-center  ">
-    <div class="items-center justify-center flex text-4xl font-bold mt-10 text-[#FF4800] animate-">
-        <h1>WELCOME !</h1>
+    <div  class="items-center justify-center flex text-4xl font-bold mt-10 text-[#FF4800]"
+         style="animation: fadeSlideDown 1s ease-out; animation-delay: .2s; animation-fill-mode: both;">
+        <h1 style="animation: glow 2s infinite;" >WELCOME !</h1>
     </div>
     <div class="flex items-center justify-center mt-10">
         <div
-            class="bg-[rgba(255,255,255,0.5)] text-xl max-w-full px-5 p-8 text-center rounded-2xl shadow-amber-700 shadow-2xl md:text-2xl  md:max-w-3xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-linear p-4">
+        class="bg-[rgba(255,255,255,0.5)] text-xl max-w-full px-5 p-8 text-center rounded-2xl 
+                    shadow-amber-700 shadow-2xl md:text-2xl md:max-w-3xl"
+             style="animation: fadeSlideUp 1s ease-out, floatBox 4s ease-in-out infinite;">
 
             <p class=" text-center w-70 md:w-120 ">Welcome to Cards, your interactive learning space! Create your own flashcard
                 collections to review and memorize key concepts easily, then test your knowledge with built-in quizzes.
